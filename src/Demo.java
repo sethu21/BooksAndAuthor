@@ -10,21 +10,7 @@ public class Demo {
         Library library = new Library();
         AuthorService authorService = new AuthorService(library);
         BookService bookService = new BookService(library);
-        try (BufferedReader reader = new BufferedReader(new FileReader())) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",");
-                int id = Integer.parseInt(parts[0]);
-                String name = parts[1];
-                String authorName = parts[2];
-                Author author = new Author(id, authorName);
-                Book book = new Book(id, name, author);
-                library.addAuthor(author);
-                library.addBook(book);
-            }
-        } catch (IOException e) {
-            System.out.println("Error reading books.txt: " + e.getMessage());
-        }
+        
 
         List<MainAction> actions = Arrays.asList(
                 new CreateAuthorMenuAction(authorService),
